@@ -1,621 +1,1265 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Solar e Vendas</title>
-    <link rel="stylesheet" href="/CSS/style.css" />
+
+    <!-- Google Fonts: Cormorant Garamond (display) + DM Sans (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./CSS/style.css" />
     <link rel="icon" href="./CSS/Assets/Icone.png" type="image/x-icon" />
   </head>
   <body>
-    <!-- HEADER / NAVBAR -->
-    <header class="header">
-      <div class="logo">
-        <a href="#home">
-          <img src="./CSS/Assets/Logo.jpeg" alt="Logo" />
-        </a>
-      </div>
+    <!-- ═══════════════════════════════════════════
+       HEADER
+  ═══════════════════════════════════════════ -->
+    <header class="header" id="header">
+      <div class="header-inner">
+        <div class="logo">
+          <a href="#home">
+            <img src="./CSS/Assets/Logo.jpeg" alt="Solar e Vendas" />
+            <span class="logo-text">SOLAR <em>E</em> VENDAS</span>
+          </a>
+        </div>
 
-      <nav class="navbar" id="navbar">
-        <a href="#home">Home</a>
-        <a href="#stats">Números</a>
-        <a href="#beneficio">Benefícios</a>
-        <a href="#calculadora">Calculadora</a>
-        <a href="#galeria">Projetos</a>
-        <a href="#depoimentos">Depoimentos</a>
-        <a href="#faq">FAQ</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#contato">Contato</a>
-      </nav>
+        <nav class="navbar" id="navbar">
+          <a href="#home">Home</a>
+          <a href="#beneficios">Benefícios</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#calculadora">Simulação</a>
+          <a href="#avaliacoes">Avaliações</a>
+          <a href="#projetos">Projetos</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contato" class="nav-cta">Orçamento Grátis</a>
+        </nav>
 
-      <div class="menu-toggle" id="menuToggle">
-        <span></span>
-        <span></span>
-        <span></span>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </header>
 
-    <!-- HOME -->
+    <!-- ═══════════════════════════════════════════
+       HERO
+       Para usar vídeo real de instalação solar:
+       Substitua <canvas id="heroCanvas"> pelo código abaixo:
+
+       <video autoplay muted loop playsinline class="hero-video">
+         <source src="./assets/solar-install.mp4" type="video/mp4" />
+       </video>
+
+  ═══════════════════════════════════════════ -->
     <section id="home" class="hero">
+      <video autoplay muted loop playsinline class="hero-video">
+        <source src="./CSS/Assets/solar-video.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-overlay"></div>
+
       <div class="hero-content">
-        <h1>Energia Solar para um Futuro Melhor</h1>
-        <p>
-          Reduza sua conta de energia em até 90% com soluções solares
-          inteligentes, seguras e sustentáveis.
+        <div class="hero-tag" data-reveal>
+          ☀ Energia Renovável · Fortaleza, CE
+        </div>
+        <h1 class="hero-title" data-reveal>
+          <span class="line">Transforme o Sol</span>
+          <span class="line gold-text">em Economia Real</span>
+        </h1>
+        <p class="hero-sub" data-reveal>
+          Reduza sua conta de energia em até <strong>90%</strong> com painéis
+          solares de alta performance. Instalação rápida, sem entrada e com 25
+          anos de garantia.
         </p>
-        <div class="hero-badges">
-          <span class="hero-badge">✓ Instalação Rápida</span>
-          <span class="hero-badge">✓ Sem Entrada</span>
-          <span class="hero-badge">✓ 25 Anos de Garantia</span>
+        <div class="hero-actions" data-reveal>
+          <a href="#contato" class="btn-primary">
+            <span>Solicitar Orçamento</span>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a href="#calculadora" class="btn-ghost">Simular Economia</a>
         </div>
+        <div class="hero-badges" data-reveal>
+          <div class="hero-badge">
+            <span class="badge-dot"></span>+200 Clientes
+          </div>
+          <div class="hero-badge">
+            <span class="badge-dot"></span>98% Satisfação
+          </div>
+          <div class="hero-badge">
+            <span class="badge-dot"></span>25 Anos Garantia
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-scroll">
+        <span>Rolar</span>
+        <div class="scroll-line"></div>
       </div>
     </section>
 
-    <!-- ESTATÍSTICAS -->
-    <section class="stats-section show" id="stats">
-      <h1>Nossos Números</h1>
-      <div class="stats-container">
-        <div class="stat-box">
-          <div class="stat-number" data-target="200">0</div>
-          <div class="stat-label">Clientes Atendidos</div>
+    <!-- ═══════════════════════════════════════════
+       STATS STRIP
+  ═══════════════════════════════════════════ -->
+    <div class="stats-strip" id="stats">
+      <div class="stats-strip-inner">
+        <div class="stat-item">
+          <span class="stat-num" data-target="200">0</span>
+          <span class="stat-plus">+</span>
+          <p>Clientes Atendidos</p>
         </div>
-        <div class="stat-box">
-          <div class="stat-number" data-target="50">0</div>
-          <div class="stat-label">Projetos Concluídos</div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="50">0</span>
+          <span class="stat-plus">+</span>
+          <p>Projetos Concluídos</p>
         </div>
-        <div class="stat-box">
-          <div class="stat-number" data-target="50">0</div>
-          <div class="stat-label">MW Instalados</div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="50">0</span>
+          <span class="stat-plus">MW</span>
+          <p>Instalados</p>
         </div>
-        <div class="stat-box">
-          <div class="stat-number" data-target="98" data-percentage="true">0</div>
-          <div class="stat-label">Satisfação</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Informações -->
-    <section class="info" id="info">
-      <h1>Por que Energia Solar?</h1>
-      <div class="info-container">
-        <p class="info-text">
-          A energia solar é a solução mais sustentável e econômica para
-          residências e empresas. Com a tecnologia de painéis fotovoltaicos,
-          você transforma a luz do sol em eletricidade limpa, reduzindo
-          drasticamente seus custos com energia elétrica.
-        </p>
-        <img
-          src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500"
-          alt="Painéis Solares"
-          class="info-img"
-        />
-
-        <img
-          src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=500"
-          alt="Instalação Solar"
-          class="info-img"
-        />
-        <p class="info-text">
-          Nossa equipe utiliza mão de obra terceirizada e cuida de todo o processo: desde o projeto
-          até a instalação e manutenção. Utilizamos equipamentos de alta
-          qualidade com garantia estendida, garantindo eficiência máxima por
-          décadas.
-        </p>
-
-        <p class="info-text">
-          Além da economia financeira, você contribui para um planeta mais
-          limpo. Cada sistema solar instalado evita toneladas de CO₂ na
-          atmosfera, equivalente ao plantio de centenas de árvores. Faça parte
-          dessa transformação!
-        </p>
-        <img
-          src="https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=500"
-          alt="Energia Limpa"
-          class="info-img"
-        />
-      </div>
-    </section>
-
-    <!-- Beneficios -->
-    <section class="beneficios" id="beneficio">
-      <h1>Benefícios da Energia Solar</h1>
-      <div class="beneficios-container">
-        <div class="beneficio-card" data-number="01">
-          <img
-            src="https://img.icons8.com/fluency/96/solar-panel.png"
-            alt="Economia"
-          />
-          <h3>Economia na Conta</h3>
-          <p>
-            Reduza sua conta de energia em até 90% e tenha previsibilidade nos
-            gastos mensais.
-          </p>
-        </div>
-
-        <div class="beneficio-card" data-number="02">
-          <img
-            src="https://img.icons8.com/fluency/96/leaf.png"
-            alt="Sustentabilidade"
-          />
-          <h3>Energia Sustentável</h3>
-          <p>
-            Fonte limpa e renovável que ajuda a preservar o meio ambiente para
-            as próximas gerações.
-          </p>
-        </div>
-
-        <div class="beneficio-card" data-number="03">
-          <img
-            src="https://img.icons8.com/fluency/96/home.png"
-            alt="Valorização"
-          />
-          <h3>Valorização do Imóvel</h3>
-          <p>
-            Imóveis com energia solar se tornam mais valorizados e atrativos no
-            mercado imobiliário.
-          </p>
-        </div>
-
-        <div class="beneficio-card" data-number="04">
-          <img
-            src="https://img.icons8.com/fluency/96/maintenance.png"
-            alt="Manutenção"
-          />
-          <h3>Baixa Manutenção</h3>
-          <p>
-            Sistemas duráveis e confiáveis, com vida útil de até 25 anos e
-            manutenção mínima.
-          </p>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="98">0</span>
+          <span class="stat-plus">%</span>
+          <p>de Satisfação</p>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- CALCULADORA DE ECONOMIA -->
-    <section class="calculadora" id="calculadora">
-      <h1 class="calc-h1">Calcule Sua Economia</h1>
-      <p style="text-align: center; color: #4a5a68; margin-bottom: 20px">
-        Descubra quanto você pode economizar com energia solar
-      </p>
-      <div class="calc-container">
-        <div class="calc-input-group">
-          <label for="conta">Valor médio da sua conta de luz (R$)</label>
-          <input type="number" id="conta" placeholder="Ex: 500" />
-        </div>
-        <button class="calc-button" onclick="calcularEconomia()">
-          Calcular Economia
-        </button>
-
-        <div class="calc-result" id="calcResult">
-          <h3>Resultados da Simulação</h3>
-          <p>
-            Economia mensal:
-            <span class="highlight" id="economiaMensal">R$ 0</span>
-          </p>
-          <p>
-            Economia anual:
-            <span class="highlight" id="economiaAnual">R$ 0</span>
-          </p>
-          <p>
-            Economia em 25 anos:
-            <span class="highlight" id="economia25">R$ 0</span>
-          </p>
-          <p style="margin-top: 15px; font-size: 14px; opacity: 0.9">
-            * Cálculo baseado em redução de 80% na conta de energia
+    <!-- ═══════════════════════════════════════════
+       BENEFÍCIOS
+  ═══════════════════════════════════════════ -->
+    <section class="section beneficios" id="beneficios">
+      <div class="section-inner">
+        <div class="section-header" data-reveal>
+          <span class="section-tag">Por que Solar?</span>
+          <h2 class="section-title">Benefícios da <em>Energia Solar</em></h2>
+          <p class="section-sub">
+            Descubra por que mais de 200 famílias e empresas no Ceará já
+            escolheram a Solar e Vendas
           </p>
         </div>
-      </div>
-    </section>
 
-    <!-- GALERIA DE PROJETOS -->
-    <section class="galeria" id="galeria">
-      <h1>Nossos Projetos</h1>
-      <div class="galeria-filter">
-        <button class="filter-btn active" data-filter="all">Todos</button>
-        <button class="filter-btn" data-filter="residencial">
-          Residencial
-        </button>
-        <button class="filter-btn" data-filter="comercial">Comercial</button>
-        <button class="filter-btn" data-filter="rural">Rural</button>
-      </div>
-      <div class="galeria-grid">
-        <div class="galeria-item" data-category="residencial">
-          <img
-            src="./CSS/Assets/Projetos/Residencial1.jpeg"
-            alt="Projeto 1"
-          />
-          <div class="galeria-overlay">
-            <h4>Casa Residencial - Fortaleza</h4>
-            <p>10 kWp | Economia de 85%</p>
-          </div>
-        </div>
-        <div class="galeria-item" data-category="comercial">
-          <img
-            src="https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=400"
-            alt="Projeto 2"
-          />
-          <div class="galeria-overlay">
-            <h4>Empresa - Maracanaú</h4>
-            <p>50 kWp | Economia de 90%</p>
-          </div>
-        </div>
-        <div class="galeria-item" data-category="rural">
-          <img
-            src="./CSS/Assets/Projetos/Rural1.jpeg"
-            alt="Projeto 3"
-          />
-          <div class="galeria-overlay">
-            <h4>Fazenda - Interior CE</h4>
-            <p>30 kWp | Economia de 88%</p>
-          </div>
-        </div>
-        <div class="galeria-item" data-category="residencial">
-          <img
-            src="./CSS/Assets/Projetos/Residencial2.jpeg"
-            alt="Projeto 4"
-          />
-          <div class="galeria-overlay">
-            <h4>Casa Residencial - Eusébio</h4>
-            <p>25 kWp | Economia de 82%</p>
-          </div>
-        </div>
-        <div class="galeria-item" data-category="residencial">
-          <img
-          src="./CSS/Assets/Projetos/Residencial3.jpeg"
-          alt="Projeto 5"
-          />
-          <div class="galeria-overlay">
-            <h4>Casa Residencial - Horizonte</h4>
-            <p>27 kWp | Economia de 85%</p>
-          </div>
-        </div>
-        <div class="galeria-item" data-category="residencial">
-          <img
-          src="./CSS/Assets/Projetos/Residencial4.jpeg"
-            alt="Projeto 6"
-          />
-          <div class="galeria-overlay">
-            <h4>Sobrado - Messejana</h4>
-            <p>12 kWp | Economia de 86%</p>
-          </div>
-        </div>
-        <div class="galeria-item" data-category="residencial">
-          <img
-          src="./CSS/Assets/Projetos/Residencial5.jpeg"
-            alt="Projeto 6"
-          />
-          <div class="galeria-overlay">
-            <h4>Casa Residencial - Fortaleza</h4>
-            <p>12 kWp | Economia de 86%</p>
-          </div>
-      </div>
-    </section>
-
-    <!-- DEPOIMENTOS -->
-    <section class="depoimentos" id="depoimentos">
-      <h1>O Que Nossos Clientes Dizem</h1>
-      <div class="depoimentos-container">
-        <div class="depoimento-card">
-          <div class="depoimento-header">
-            <img
-              src="./CSS/Assets/Depoimentos/ramires.jpeg"
-              alt="Cliente"
-              class="depoimento-avatar"
-            />
-            <div class="depoimento-info">
-              <h4>Ramires Castelo</h4>
-              <div class="stars">★★★★★</div>
+        <div class="beneficios-grid">
+          <div class="beneficio-card" data-reveal data-delay="0">
+            <div class="card-icon">
+              <svg viewBox="0 0 48 48" fill="none">
+                <circle
+                  cx="24"
+                  cy="24"
+                  r="20"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  opacity=".2"
+                />
+                <path
+                  d="M24 8v4M24 36v4M8 24h4M36 24h4M12.7 12.7l2.8 2.8M32.5 32.5l2.8 2.8M12.7 35.3l2.8-2.8M32.5 15.5l2.8-2.8"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                />
+                <circle
+                  cx="24"
+                  cy="24"
+                  r="7"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                />
+              </svg>
+            </div>
+            <div class="card-num">01</div>
+            <h3>Economia na Conta</h3>
+            <p>
+              Reduza sua fatura de energia em até <strong>90%</strong> e tenha
+              previsibilidade total nos gastos mensais. Fim dos aumentos
+              surpresa.
+            </p>
+            <div class="card-footer">
+              <span class="card-tag">Até 90% de redução</span>
             </div>
           </div>
-          <p class="depoimento-text">
-            "Excelente empresa! Empresa entrega serviço com excelente qualidade e preço e foi feito tudo rapidamente. Super indico"
-          </p>
-        </div>
 
-        <div class="depoimento-card">
-          <div class="depoimento-header">
-            <img
-              src="./CSS/Assets/Depoimentos/sonia.jpeg"
-              alt="Cliente"
-              class="depoimento-avatar"
-            />
-            <div class="depoimento-info">
-              <h4>Sonia Maria</h4>
-              <div class="stars">★★★★★</div>
+          <div class="beneficio-card featured" data-reveal data-delay="100">
+            <div class="card-icon">
+              <svg viewBox="0 0 48 48" fill="none">
+                <path
+                  d="M24 4L6 14v10c0 10.5 7.7 20.3 18 22.5C35.3 44.3 42 34.5 42 24V14L24 4z"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                />
+                <path
+                  d="M16 24l5 5 11-11"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div class="card-num">02</div>
+            <h3>Energia Sustentável</h3>
+            <p>
+              Fonte 100% limpa e renovável. Cada sistema solar instalado evita
+              toneladas de CO₂, equivalente ao plantio de centenas de árvores.
+            </p>
+            <div class="card-footer">
+              <span class="card-tag">Zero emissões</span>
             </div>
           </div>
-          <p class="depoimento-text">
-            "Melhor investimento que eu fiz! A instalação foi rápida e
-            profissional. Já estou economizando muito por ter feito."
-          </p>
-        </div>
 
-        <div class="depoimento-card">
-          <div class="depoimento-header">
-            <img
-              src="./CSS/Assets/Depoimentos/lays.jpeg"
-              alt="Cliente"
-              class="depoimento-avatar"
-            />
-            <div class="depoimento-info">
-              <h4>Lays Castelo</h4>
-              <div class="stars">★★★★★</div>
+          <div class="beneficio-card" data-reveal data-delay="200">
+            <div class="card-icon">
+              <svg viewBox="0 0 48 48" fill="none">
+                <path
+                  d="M12 20V38h24V20M6 22L24 6l18 16"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <rect
+                  x="18"
+                  y="28"
+                  width="12"
+                  height="10"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                />
+              </svg>
+            </div>
+            <div class="card-num">03</div>
+            <h3>Valorização do Imóvel</h3>
+            <p>
+              Imóveis com sistema solar são avaliados em até
+              <strong>+10%</strong> no mercado. Um investimento que se paga e
+              ainda agrega valor permanente.
+            </p>
+            <div class="card-footer">
+              <span class="card-tag">+10% no valor</span>
             </div>
           </div>
-          <p class="depoimento-text">
-            "Equipe muito profissional e atenciosa. Tiraram todas as minhas
-            dúvidas e o sistema está funcionando perfeitamente recomendo"
+
+          <div class="beneficio-card" data-reveal data-delay="300">
+            <div class="card-icon">
+              <svg viewBox="0 0 48 48" fill="none">
+                <circle
+                  cx="24"
+                  cy="24"
+                  r="18"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                />
+                <path
+                  d="M24 14v10l6 6"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <div class="card-num">04</div>
+            <h3>Baixa Manutenção</h3>
+            <p>
+              Sistemas com <strong>25+ anos</strong> de vida útil. A manutenção
+              é mínima — a chuva já cuida da limpeza. Trabalhando enquanto você
+              dorme.
+            </p>
+            <div class="card-footer">
+              <span class="card-tag">25 anos garantia</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+       SOBRE / INFORMAÇÕES + EQUIPE
+  ═══════════════════════════════════════════ -->
+    <section class="section sobre" id="sobre">
+      <div class="section-inner">
+        <!-- Info da empresa -->
+        <div class="sobre-layout">
+          <div class="sobre-text" data-reveal>
+            <span class="section-tag">Sobre Nós</span>
+            <h2 class="section-title">Por que <em>Solar e Vendas?</em></h2>
+            <p>
+              A energia solar é a solução mais sustentável e econômica para
+              residências e empresas. Com a tecnologia de painéis fotovoltaicos,
+              você transforma a luz do sol em eletricidade limpa, reduzindo
+              drasticamente seus custos com energia elétrica.
+            </p>
+            <p>
+              Nossa equipe cuida de todo o processo — do projeto até a
+              instalação — utilizando equipamentos de alta qualidade com
+              garantia estendida, garantindo eficiência máxima por décadas.
+            </p>
+            <p>
+              Além da economia financeira, você contribui para um planeta mais
+              limpo. Cada sistema solar instalado evita toneladas de CO₂ na
+              atmosfera, equivalente ao plantio de centenas de árvores. Faça
+              parte dessa transformação!
+            </p>
+            <div class="sobre-stats">
+              <div class="sobre-stat">
+                <strong>+200</strong>
+                <span>Clientes</span>
+              </div>
+              <div class="sobre-stat">
+                <strong>4–7 anos</strong>
+                <span>Payback médio</span>
+              </div>
+              <div class="sobre-stat">
+                <strong>25 anos</strong>
+                <span>Garantia</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="sobre-images" data-reveal data-delay="150">
+            <div class="sobre-img-grid">
+              <img
+                src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80"
+                alt="Painéis Solares"
+                loading="lazy"
+                class="img-main"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=400&q=80"
+                alt="Instalação Solar"
+                loading="lazy"
+                class="img-side-top"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=400&q=80"
+                alt="Energia Limpa"
+                loading="lazy"
+                class="img-side-bot"
+              />
+            </div>
+            <div class="sobre-img-badge">
+              <span class="badge-num">98%</span>
+              <span class="badge-label">Satisfação dos clientes</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Equipe -->
+        <div class="equipe-wrap" data-reveal>
+          <div class="equipe-header">
+            <span class="section-tag">Time</span>
+            <h2 class="section-title">Nossa <em>Equipe</em></h2>
+          </div>
+          <div class="equipe-grid">
+            <div class="membro-card" data-reveal data-delay="0">
+              <div class="membro-photo">
+                <img
+                  src="./CSS/Assets/IgorSouza.jpeg"
+                  alt="Igor Souza"
+                  loading="lazy"
+                />
+                <div class="membro-social">
+                  <a
+                    href="https://www.linkedin.com/in/igor-souza-2945103a6/"
+                    target="_blank"
+                    aria-label="LinkedIn de Igor"
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <div class="membro-info">
+                <h3>Igor Souza</h3>
+                <span>Técnico de TI Comercial</span>
+                <p>
+                  Responsável pela tecnologia e presença digital da empresa,
+                  garantindo inovação em cada projeto.
+                </p>
+              </div>
+            </div>
+
+            <div class="membro-card" data-reveal data-delay="150">
+              <div class="membro-photo">
+                <img
+                  src="./CSS/Assets/GabrielAmeida.jpeg"
+                  alt="Gabriel Almeida"
+                  loading="lazy"
+                />
+                <div class="membro-social"></div>
+              </div>
+              <div class="membro-info">
+                <h3>Gabriel Almeida</h3>
+                <span>Diretor Comercial</span>
+                <p>
+                  Lidera as operações comerciais com foco em excelência no
+                  atendimento e soluções personalizadas.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+       CALCULADORA
+  ═══════════════════════════════════════════ -->
+    <section class="section calculadora" id="calculadora">
+      <div class="section-inner">
+        <div class="calc-layout">
+          <div class="calc-info" data-reveal>
+            <span class="section-tag">Simulação</span>
+            <h2 class="section-title">Quanto você pode <em>economizar?</em></h2>
+            <p class="section-sub">
+              Insira o valor médio da sua conta de luz e veja em segundos quanto
+              sua família ou empresa pode economizar nos próximos 25 anos.
+            </p>
+            <div class="calc-features">
+              <div class="calc-feature">
+                <div class="cf-icon">💡</div>
+                <p>Cálculo baseado em redução média de <strong>80%</strong></p>
+              </div>
+              <div class="calc-feature">
+                <div class="cf-icon">📊</div>
+                <p>Projeção para <strong>1, 12 e 300 meses</strong></p>
+              </div>
+              <div class="calc-feature">
+                <div class="cf-icon">🌿</div>
+                <p>100% gratuito, sem compromisso</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="calc-card" data-reveal data-delay="150">
+            <div class="calc-input-wrap">
+              <label for="conta">Valor médio da conta de luz</label>
+              <div class="input-group">
+                <span class="input-prefix">R$</span>
+                <input
+                  type="number"
+                  id="conta"
+                  placeholder="500,00"
+                  min="0"
+                  max="9999999"
+                  oninput="
+                    if (this.value.replace(/\D/g, '').length > 7)
+                      this.value = this.value.slice(0, 7);
+                  "
+                />
+              </div>
+            </div>
+            <button class="btn-primary full-width" onclick="calcularEconomia()">
+              <span>Calcular Minha Economia</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+
+            <div class="calc-result" id="calcResult">
+              <div class="result-grid">
+                <div class="result-item">
+                  <span class="result-label">Economia Mensal</span>
+                  <span class="result-value" id="economiaMensal">R$ 0</span>
+                </div>
+                <div class="result-item highlight">
+                  <span class="result-label">Economia Anual</span>
+                  <span class="result-value" id="economiaAnual">R$ 0</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-label">Em 25 Anos</span>
+                  <span class="result-value" id="economia25">R$ 0</span>
+                </div>
+              </div>
+              <p class="result-note">
+                * Cálculo estimado baseado em 80% de redução
+              </p>
+              <a
+                href="#contato"
+                class="btn-primary full-width"
+                style="margin-top: 16px"
+              >
+                <span>Quero esse Desconto!</span>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+       AVALIAÇÕES GOOGLE
+       ────────────────────────────────────────── -->
+    <section class="section avaliacoes" id="avaliacoes">
+      <div class="section-inner">
+        <div class="section-header" data-reveal>
+          <span class="section-tag">Avaliações</span>
+          <h2 class="section-title">O que dizem no <em>Google</em></h2>
+          <div class="google-rating-badge">
+            <svg viewBox="0 0 24 24" class="google-icon">
+              <path
+                fill="#4285F4"
+                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+              />
+              <path
+                fill="#34A853"
+                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+              />
+              <path
+                fill="#FBBC05"
+                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+              />
+              <path
+                fill="#EA4335"
+                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+              />
+            </svg>
+            <div class="rating-info">
+              <div class="rating-stars">
+                <span class="stars-visual">★★★★★</span>
+                <span class="rating-num" id="googleRatingNum">5.0</span>
+              </div>
+              <span class="rating-count" id="googleRatingCount"
+                >baseado em avaliações do Google</span
+              >
+            </div>
+            <a
+              href="https://share.google/CyDEfregcsZCXF5ia"
+              target="_blank"
+              class="see-all-reviews"
+            >
+              Ver todas no Google →
+            </a>
+          </div>
+        </div>
+
+        <!-- Container onde as avaliações são injetadas via JS -->
+        <!-- Quando a Google Places API estiver configurada, estes cards são substituídos
+           automaticamente pelas fotos de perfil reais do Google de cada avaliador. -->
+        <div class="reviews-grid" id="reviewsGrid">
+          <div class="review-card" data-reveal data-delay="0">
+            <div class="review-header">
+              <div class="reviewer-avatar">
+                <img
+                  src="https://ui-avatars.com/api/?name=Ramires+Castelo&background=1a2744&color=f5c518&size=88&bold=true&rounded=true"
+                  alt="Ramires Castelo"
+                />
+              </div>
+              <div class="reviewer-info">
+                <strong>Ramires Castelo</strong>
+                <span class="review-source">
+                  <svg viewBox="0 0 24 24" width="13" height="13">
+                    <path
+                      fill="#4285F4"
+                      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                    />
+                    <path
+                      fill="#34A853"
+                      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                    />
+                    <path
+                      fill="#FBBC05"
+                      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                    />
+                    <path
+                      fill="#EA4335"
+                      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                    />
+                  </svg>
+                  Google
+                </span>
+              </div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+            <p>
+              "Excelente empresa! Serviço com qualidade e preço justo, feito
+              tudo rapidamente. Super indico!"
+            </p>
+          </div>
+
+          <div class="review-card" data-reveal data-delay="80">
+            <div class="review-header">
+              <div class="reviewer-avatar">
+                <img
+                  src="https://ui-avatars.com/api/?name=Sonia+Maria&background=1a2744&color=f5c518&size=88&bold=true&rounded=true"
+                  alt="Sonia Maria"
+                />
+              </div>
+              <div class="reviewer-info">
+                <strong>Sonia Maria</strong>
+                <span class="review-source">
+                  <svg viewBox="0 0 24 24" width="13" height="13">
+                    <path
+                      fill="#4285F4"
+                      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                    />
+                    <path
+                      fill="#34A853"
+                      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                    />
+                    <path
+                      fill="#FBBC05"
+                      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                    />
+                    <path
+                      fill="#EA4335"
+                      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                    />
+                  </svg>
+                  Google
+                </span>
+              </div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+            <p>
+              "Melhor investimento que fiz! Instalação rápida e profissional. Já
+              estou economizando muito desde a instalação."
+            </p>
+          </div>
+
+          <div class="review-card" data-reveal data-delay="160">
+            <div class="review-header">
+              <div class="reviewer-avatar">
+                <img
+                  src="https://ui-avatars.com/api/?name=Lays+Castelo&background=1a2744&color=f5c518&size=88&bold=true&rounded=true"
+                  alt="Lays Castelo"
+                />
+              </div>
+              <div class="reviewer-info">
+                <strong>Lays Castelo</strong>
+                <span class="review-source">
+                  <svg viewBox="0 0 24 24" width="13" height="13">
+                    <path
+                      fill="#4285F4"
+                      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                    />
+                    <path
+                      fill="#34A853"
+                      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                    />
+                    <path
+                      fill="#FBBC05"
+                      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                    />
+                    <path
+                      fill="#EA4335"
+                      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                    />
+                  </svg>
+                  Google
+                </span>
+              </div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+            <p>
+              "Equipe muito profissional e atenciosa. Tiraram todas as minhas
+              dúvidas e o sistema está funcionando perfeitamente!"
+            </p>
+          </div>
+
+          <div class="review-card" data-reveal data-delay="240">
+            <div class="review-header">
+              <div class="reviewer-avatar">
+                <img
+                  src="https://ui-avatars.com/api/?name=Carlos+Mendes&background=1a2744&color=f5c518&size=88&bold=true&rounded=true"
+                  alt="Carlos Mendes"
+                />
+              </div>
+              <div class="reviewer-info">
+                <strong>Carlos Mendes</strong>
+                <span class="review-source">
+                  <svg viewBox="0 0 24 24" width="13" height="13">
+                    <path
+                      fill="#4285F4"
+                      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                    />
+                    <path
+                      fill="#34A853"
+                      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                    />
+                    <path
+                      fill="#FBBC05"
+                      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                    />
+                    <path
+                      fill="#EA4335"
+                      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                    />
+                  </svg>
+                  Google
+                </span>
+              </div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+            <p>
+              "Atendimento impecável do início ao fim. Fizeram um projeto
+              personalizado para meu comércio e o retorno já apareceu na
+              primeira fatura. Recomendo!"
+            </p>
+          </div>
+
+          <div class="review-card" data-reveal data-delay="320">
+            <div class="review-header">
+              <div class="reviewer-avatar">
+                <img
+                  src="https://ui-avatars.com/api/?name=Ana+Paula+Silva&background=1a2744&color=f5c518&size=88&bold=true&rounded=true"
+                  alt="Ana Paula Silva"
+                />
+              </div>
+              <div class="reviewer-info">
+                <strong>Ana Paula Silva</strong>
+                <span class="review-source">
+                  <svg viewBox="0 0 24 24" width="13" height="13">
+                    <path
+                      fill="#4285F4"
+                      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                    />
+                    <path
+                      fill="#34A853"
+                      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                    />
+                    <path
+                      fill="#FBBC05"
+                      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                    />
+                    <path
+                      fill="#EA4335"
+                      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                    />
+                  </svg>
+                  Google
+                </span>
+              </div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+            <p>
+              "Muito satisfeita com o serviço! A Solar e Vendas explicou tudo
+              com clareza, instalação foi super organizada e minha conta caiu
+              mais de 80%. Vale cada centavo!"
+            </p>
+          </div>
+        </div>
+
+        <div class="reviews-cta" data-reveal>
+          <a
+            href="https://share.google/CyDEfregcsZCXF5ia"
+            target="_blank"
+            class="btn-ghost google-btn"
+          >
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path
+                fill="#4285F4"
+                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+              />
+              <path
+                fill="#34A853"
+                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+              />
+              <path
+                fill="#FBBC05"
+                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+              />
+              <path
+                fill="#EA4335"
+                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+              />
+            </svg>
+            Ver todas as avaliações no Google
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+       PROJETOS REALIZADOS
+  ═══════════════════════════════════════════ -->
+    <section class="section projetos" id="projetos">
+      <div class="section-inner">
+        <div class="section-header" data-reveal>
+          <span class="section-tag">Portfólio</span>
+          <h2 class="section-title">Projetos <em>Realizados</em></h2>
+          <p class="section-sub">
+            Cada projeto é único. Veja como transformamos telhados em usinas de
+            energia limpa.
           </p>
         </div>
+
+        <div class="filter-bar" data-reveal>
+          <button class="filter-btn active" data-filter="all">Todos</button>
+          <button class="filter-btn" data-filter="residencial">
+            Residencial
+          </button>
+          <button class="filter-btn" data-filter="comercial">Comercial</button>
+          <button class="filter-btn" data-filter="rural">Rural</button>
+        </div>
+
+        <div class="projetos-grid" id="projetosGrid">
+          <div class="projeto-item" data-category="residencial" data-reveal>
+            <img
+              src="./CSS/Assets/Projetos/Residencial1.jpeg"
+              alt="Casa Residencial Fortaleza"
+              loading="lazy"
+            />
+            <div class="projeto-overlay">
+              <span class="proj-tag">Residencial</span>
+              <h4>Casa Residencial · Fortaleza</h4>
+              <p>10 kWp · Economia de 85%</p>
+            </div>
+          </div>
+
+          <div class="projeto-item" data-category="comercial" data-reveal>
+            <img
+              src="https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=600&q=80"
+              alt="Empresa Maracanaú"
+              loading="lazy"
+            />
+            <div class="projeto-overlay">
+              <span class="proj-tag">Comercial</span>
+              <h4>Empresa · Maracanaú</h4>
+              <p>50 kWp · Economia de 90%</p>
+            </div>
+          </div>
+
+          <div class="projeto-item large" data-category="rural" data-reveal>
+            <img
+              src="./CSS/Assets/Projetos/Rural1.jpeg"
+              alt="Fazenda Interior CE"
+              loading="lazy"
+            />
+            <div class="projeto-overlay">
+              <span class="proj-tag">Rural</span>
+              <h4>Fazenda · Interior CE</h4>
+              <p>30 kWp · Economia de 88%</p>
+            </div>
+          </div>
+
+          <div class="projeto-item" data-category="residencial" data-reveal>
+            <img
+              src="./CSS/Assets/Projetos/Residencial2.jpeg"
+              alt="Casa Eusébio"
+              loading="lazy"
+            />
+            <div class="projeto-overlay">
+              <span class="proj-tag">Residencial</span>
+              <h4>Casa Residencial · Eusébio</h4>
+              <p>25 kWp · Economia de 82%</p>
+            </div>
+          </div>
+
+          <div class="projeto-item" data-category="residencial" data-reveal>
+            <img
+              src="./CSS/Assets/Projetos/Residencial3.jpeg"
+              alt="Casa Horizonte"
+              loading="lazy"
+            />
+            <div class="projeto-overlay">
+              <span class="proj-tag">Residencial</span>
+              <h4>Casa Residencial · Horizonte</h4>
+              <p>27 kWp · Economia de 85%</p>
+            </div>
+          </div>
+
+          <div class="projeto-item" data-category="residencial" data-reveal>
+            <img
+              src="./CSS/Assets/Projetos/Residencial4.jpeg"
+              alt="Sobrado Messejana"
+              loading="lazy"
+            />
+            <div class="projeto-overlay">
+              <span class="proj-tag">Residencial</span>
+              <h4>Sobrado · Messejana</h4>
+              <p>12 kWp · Economia de 86%</p>
+            </div>
+          </div>
+
+          <div class="projeto-item" data-category="residencial" data-reveal>
+            <img
+              src="./CSS/Assets/Projetos/Residencial5.jpeg"
+              alt="Casa Fortaleza"
+              loading="lazy"
+            />
+            <div class="projeto-overlay">
+              <span class="proj-tag">Residencial</span>
+              <h4>Casa Residencial · Fortaleza</h4>
+              <p>12 kWp · Economia de 86%</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="faq" id="faq">
-      <h1>Perguntas Frequentes</h1>
-      <div class="faq-container">
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            <h3>Como funciona a energia solar?</h3>
-            <span class="faq-icon">▼</span>
-          </div>
-          <div class="faq-answer">
-            <p>
-              Os painéis solares captam a luz do sol e a convertem em energia
-              elétrica através de células fotovoltaicas. Essa energia é
-              convertida de corrente contínua para corrente alternada por um
-              inversor, podendo assim ser utilizada em sua casa ou empresa.
+    <!-- ═══════════════════════════════════════════
+       FAQ
+  ═══════════════════════════════════════════ -->
+    <section class="section faq" id="faq">
+      <div class="section-inner">
+        <div class="faq-layout">
+          <div class="faq-left" data-reveal>
+            <span class="section-tag">Dúvidas</span>
+            <h2 class="section-title">Perguntas <em>Frequentes</em></h2>
+            <p class="section-sub">
+              Ainda tem dúvidas? Nossa equipe está pronta para te ajudar.
             </p>
+            <a
+              href="https://wa.me/558597857791?text=Olá!%20Tenho%20dúvidas%20sobre%20energia%20solar."
+              target="_blank"
+              class="btn-primary faq-cta"
+            >
+              <span>Falar com Especialista</span>
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+                />
+                <path
+                  d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.085 21.54a.5.5 0 00.613.636l4.54-1.32C8.762 21.533 10.35 22 12 22c5.522 0 10-4.478 10-10s-4.478-10-10-10z"
+                />
+              </svg>
+            </a>
+          </div>
+
+          <div class="faq-accordion" data-reveal data-delay="150">
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span>Como funciona a energia solar?</span>
+                <div class="faq-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </div>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Os painéis solares captam a luz do sol e a convertem em
+                  energia elétrica através de células fotovoltaicas. Essa
+                  energia é transformada de corrente contínua para corrente
+                  alternada por um inversor, podendo ser usada em sua casa ou
+                  empresa — ou injetada na rede para virar créditos na sua conta
+                  de luz.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span>Quanto tempo dura um sistema solar?</span>
+                <div class="faq-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </div>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Os painéis solares têm vida útil de 25 a 30 anos, mantendo
+                  cerca de 80% da eficiência original após esse período. Os
+                  inversores geralmente duram de 10 a 15 anos e podem ser
+                  facilmente substituídos quando necessário.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span>Funciona em dias nublados ou chuvosos?</span>
+                <div class="faq-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </div>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Sim! Embora a geração seja reduzida em dias nublados, o
+                  sistema continua produzindo energia pois a luz difusa também é
+                  aproveitada. Além disso, no Ceará temos mais de 300 dias de
+                  sol por ano — uma das melhores condições do mundo para energia
+                  solar.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span>Qual o tempo de retorno do investimento?</span>
+                <div class="faq-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </div>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  O payback médio varia de 4 a 7 anos, dependendo do consumo e
+                  da tarifa de energia da sua região. Após esse período, toda a
+                  economia é lucro líquido por mais 20+ anos — é como ter uma
+                  renda passiva limpa todo mês.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span>Precisa de muita manutenção?</span>
+                <div class="faq-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </div>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  A manutenção é mínima. Recomenda-se limpar os painéis 2 a 3
+                  vezes por ano (no Ceará, as chuvas de inverno já fazem isso) e
+                  uma revisão técnica anual. Os sistemas são extremamente
+                  duráveis e confiáveis.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            <h3>Quanto tempo dura um sistema solar?</h3>
-            <span class="faq-icon">▼</span>
-          </div>
-          <div class="faq-answer">
-            <p>
-              Os painéis solares têm vida útil de 25 a 30 anos, mantendo cerca
-              de 80% de sua eficiência original após esse período. Os inversores
-              geralmente duram de 10 a 15 anos e podem ser substituídos se
-              necessário.
+    <!-- ═══════════════════════════════════════════
+       CONTATO
+  ═══════════════════════════════════════════ -->
+    <section class="section contato" id="contato">
+      <div class="section-inner">
+        <div class="contato-layout">
+          <div class="contato-info" data-reveal>
+            <span class="section-tag">Fale Conosco</span>
+            <h2 class="section-title">Receba seu <em>Orçamento</em></h2>
+            <p class="section-sub">
+              Preencha o formulário ou nos chame no WhatsApp. Nossa equipe
+              responde em até 2 horas.
             </p>
-          </div>
-        </div>
 
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            <h3>Funciona em dias nublados ou chuvosos?</h3>
-            <span class="faq-icon">▼</span>
-          </div>
-          <div class="faq-answer">
-            <p>
-              Sim! Embora a geração seja reduzida em dias nublados, o sistema
-              continua produzindo energia. A luz difusa também é aproveitada
-              pelos painéis. Além disso, você pode usar créditos de energia
-              gerados em dias ensolarados.
-            </p>
-          </div>
-        </div>
+            <div class="contact-items">
+              <a
+                href="https://wa.me/558597857791"
+                target="_blank"
+                class="contact-item"
+              >
+                <div class="ci-icon green">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+                    />
+                    <path
+                      d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.085 21.54a.5.5 0 00.613.636l4.54-1.32C8.762 21.533 10.35 22 12 22c5.522 0 10-4.478 10-10s-4.478-10-10-10z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <span>WhatsApp</span>
+                  <strong>(85) 9785-7791</strong>
+                </div>
+              </a>
+              <a href="mailto:solarvendas@gmail.com" class="contact-item">
+                <div class="ci-icon gold">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                    />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                </div>
+                <div>
+                  <span>Email</span>
+                  <strong>solarvendas@gmail.com</strong>
+                </div>
+              </a>
+              <div class="contact-item">
+                <div class="ci-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
+                <div>
+                  <span>Endereço</span>
+                  <strong
+                    >Av. Srg. Hermínio Sampaio, 3100 — Fortaleza, CE</strong
+                  >
+                </div>
+              </div>
+            </div>
 
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            <h3>Qual o tempo de retorno do investimento?</h3>
-            <span class="faq-icon">▼</span>
+            <div class="map-embed">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.3840988843845!2d-38.568930326212396!3d-3.7261480431582203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7c749caefc98dad%3A0x9a90f5809f2e3cd0!2sALL%20Business%20Coworking%20-%20Shopping%20RioMar!5e0!3m2!1spt-BR!2sbr!4v1768333503655!5m2!1spt-BR!2sbr"
+                title="Localização Solar e Vendas"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen
+              ></iframe>
+            </div>
           </div>
-          <div class="faq-answer">
-            <p>
-              O payback médio varia de 4 a 7 anos, dependendo do consumo e da
-              tarifa de energia da sua região. Após esse período, toda a
-              economia é lucro líquido para você por mais 20+ anos.
-            </p>
-          </div>
-        </div>
 
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">
-            <h3>Preciso de manutenção?</h3>
-            <span class="faq-icon">▼</span>
-          </div>
-          <div class="faq-answer">
-            <p>
-              A manutenção é mínima. Recomenda-se limpar os painéis 2 a 3 vezes
-              por ano (geralmente a chuva já faz isso) e fazer uma revisão
-              técnica anual. Os sistemas são muito duráveis e confiáveis.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- COMPARATIVO -->
-    <section class="comparativo" id="comparativo">
-      <h1>Energia Solar vs Tradicional</h1>
-      <div class="comparativo-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Característica</th>
-              <th>Energia Tradicional</th>
-              <th>Energia Solar</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Custo mensal</td>
-              <td>Alto e imprevisível</td>
-              <td>Redução de até 90%</td>
-            </tr>
-            <tr>
-              <td>Impacto ambiental</td>
-              <td><span class="cross">✗</span> Poluente</td>
-              <td><span class="check">✓</span> 100% Limpa</td>
-            </tr>
-            <tr>
-              <td>Manutenção</td>
-              <td>Infraestrutura externa</td>
-              <td>Mínima e simples</td>
-            </tr>
-            <tr>
-              <td>Valorização do imóvel</td>
-              <td><span class="cross">✗</span> Não agrega</td>
-              <td><span class="check">✓</span> +10% valor</td>
-            </tr>
-            <tr>
-              <td>Dependência de distribuidora</td>
-              <td><span class="cross">✗</span> Total</td>
-              <td><span class="check">✓</span> Independência</td>
-            </tr>
-            <tr>
-              <td>Reajustes anuais</td>
-              <td><span class="cross">✗</span> Constantes</td>
-              <td><span class="check">✓</span> Custo fixo</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="cta">
-      <h2>Pronto Para Economizar?</h2>
-      <p>
-        Transforme o sol em economia: reduza sua conta de luz e invista no seu
-        próprio futuro sustentável.
-      </p>
-      <a href="#contato">Solicitar Orçamento Grátis</a>
-    </section>
-
-    <!-- CONTADOR CO2 -->
-    <section class="co2" id="co2">
-      <h1>Nosso Impacto Ambiental</h1>
-      <div class="co2-container">
-        <div class="co2-box">
-          <span class="co2-number" data-target="1250">0</span>
-          <p>Toneladas de CO₂ evitadas</p>
-        </div>
-        <div class="co2-box">
-          <span class="co2-number" data-target="3400">0</span>
-          <p>Árvores equivalentes plantadas</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- TIMELINE -->
-    <section class="timeline-section" id="timeline">
-      <h1>Sua Jornada de Economia</h1>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <h3>📋 Instalação</h3>
-            <p>Investimento inicial com financiamento facilitado</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <h3>📊 1º Ano</h3>
-            <p>Redução imediata de até 80% na conta de luz</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <h3>💰 5º Ano</h3>
-            <p>Investimento praticamente pago com a economia</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <h3>🌱 25 Anos</h3>
-            <p>Economia total acumulada e energia 100% limpa</p>
+          <div class="contato-form-wrap" data-reveal data-delay="150">
+            <form class="contato-form" id="contactForm">
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="nome">Nome completo *</label>
+                  <input
+                    type="text"
+                    id="nome"
+                    name="nome"
+                    placeholder="João Silva"
+                    required
+                  />
+                </div>
+                <div class="form-field">
+                  <label for="telefone">WhatsApp *</label>
+                  <input
+                    type="tel"
+                    id="telefone"
+                    name="telefone"
+                    placeholder="(85) 99999-9999"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="email">Email *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="joao@email.com"
+                  required
+                />
+              </div>
+              <div class="form-field">
+                <label for="mensagemTexto">Mensagem</label>
+                <textarea
+                  id="mensagemTexto"
+                  name="mensagem"
+                  rows="4"
+                  placeholder="Conte um pouco sobre seu consumo de energia e onde fica sua propriedade..."
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="btn-primary full-width"
+                id="submitBtn"
+              >
+                <span>Enviar e Receber Orçamento</span>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                </svg>
+              </button>
+              <div class="mensagem" id="mensagem"></div>
+              <div id="status" style="display: none"></div>
+            </form>
           </div>
         </div>
       </div>
     </section>
-    <!-- SOBRE NÓS -->
-    <section id="sobre" class="sobre">
-      <h2>Sobre Nós</h2>
-      <p>
-        Somos uma empresa especializada em energia solar, focada em inovação,
-        sustentabilidade e economia para nossos clientes.
-      </p>
-      <p>
-        Já instalamos centenas de sistemas fotovoltaicos, com mão de obra terceirizada em residências,
-        empresas e fazendas por todo o Ceará.
-      </p>
-      <p>
-        Nossa missão é democratizar o acesso à energia limpa, oferecendo
-        soluções personalizadas com os melhores equipamentos do mercado e
-        atendimento de excelência.
-      </p>
-      <h2 id="colab">Nossa Equipe</h2>
-      <div class="team">
-        <div class="member">
-          <img src="./CSS/Assets/IgorSouza.jpeg" alt="Colaborador 1" />
-          <h3>Igor Souza</h3>
-          <span>Tecnico de TI Comercial</span>
-        </div>
-        
-        <div class="member">
-          <img src="./CSS/Assets/GabrielAmeida.jpeg" alt="Colaborador 2" />
-          <h3>Gabriel Almeida</h3>
-          <span>Diretor Comercial</span>
-        </div>
-      </div>
-    </section>
-    <!-- CONTATO -->
-    <section id="contato" class="contato">
-  <h1>Entre em Contato</h1>
 
-  <form class="form-contato" id="contactForm">
-    <input type="text" name="nome" id="nome" placeholder="Seu nome" required />
-    <input type="email" name="email" id="email" placeholder="Seu email" required />
-    <input type="tel" name="telefone" id="telefone" placeholder="Seu telefone" required />
-    <textarea
-      name="mensagem"
-      id="mensagemTexto"
-      placeholder="Sua mensagem"
-      rows="5"
-      required
-    ></textarea>
-
-    <button type="submit" id="submitBtn">Enviar Mensagem</button>
-  </form>
-
-  <div class="mensagem" id="mensagem"></div>
-  <div class="status" id="status">Status: Aguardando envio...</div>
-</section>
-
-    <!-- ENDEREÇO -->
-    <section class="address" id="address">
-      <h1>Nosso <span style="color: #f2b705">Endereço</span></h1>
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.3840988843845!2d-38.568930326212396!3d-3.7261480431582203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7c749caefc98dad%3A0x9a90f5809f2e3cd0!2sALL%20Business%20Coworking%20-%20Shopping%20RioMar!5e0!3m2!1spt-BR!2sbr!4v1768333503655!5m2!1spt-BR!2sbr"
-        width="500"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      >
-      </iframe>
-      <h3>
-        Av. Srg. Hermínio Sampaio, 3100 - Sala 1220<br />Pres. Kennedy,
-        Fortaleza - CE, 60355-512
-      </h3>
-    </section>
-    <!-- FOOTER -->
+    <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
     <footer class="footer">
-      <div class="footer-content">
-        <div>
-          <h3>SOLAR E VENDAS</h3>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img
+            src="./CSS/Assets/Logo.jpeg"
+            alt="Solar e Vendas"
+            class="footer-logo"
+          />
           <p>
-            Transformando luz solar em economia e sustentabilidade para o seu
-            futuro.
+            Transformando luz solar em economia e sustentabilidade para o futuro
+            do Ceará.
           </p>
           <div class="social-links">
-            <a href="https://www.instagram.com/oficialsousacruz_?igsh=MTJxeHlkOHpzaWUxOA==" aria-label="Instagram">
+            <a
+              href="https://www.instagram.com/oficialsousacruz_?igsh=MTJxeHlkOHpzaWUxOA=="
+              target="_blank"
+              aria-label="Instagram"
+            >
               <svg
-                width="20"
-                height="20"
+                width="18"
+                height="18"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -624,10 +1268,101 @@
                 />
               </svg>
             </a>
-            <a href="https://www.linkedin.com/in/igor-souza-2945103a6/" aria-label="LinkedIn">
+            <a
+              href="https://wa.me/558597857791"
+              target="_blank"
+              aria-label="WhatsApp"
+            >
               <svg
-                width="20"
-                height="20"
+                width="18"
+                height="18"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+                />
+                <path
+                  d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.085 21.54a.5.5 0 00.613.636l4.54-1.32C8.762 21.533 10.35 22 12 22c5.522 0 10-4.478 10-10s-4.478-10-10-10z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <h4>Navegação</h4>
+          <a href="#home">Home</a>
+          <a href="#beneficios">Benefícios</a>
+          <a href="#calculadora">Simulação</a>
+          <a href="#avaliacoes">Avaliações</a>
+          <a href="#projetos">Projetos</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contato">Contato</a>
+        </div>
+
+        <div class="footer-links">
+          <h4>Serviços</h4>
+          <a href="#projetos">Instalação Residencial</a>
+          <a href="#projetos">Instalação Comercial</a>
+          <a href="#projetos">Instalação Rural</a>
+          <a href="#contato">Manutenção</a>
+        </div>
+
+        <div class="footer-links">
+          <h4>Contato</h4>
+          <a href="tel:+5585978577791">📞 (85) 9785-7791</a>
+          <a href="mailto:solarvendas@gmail.com">📧 solarvendas@gmail.com</a>
+          <span>📍 Fortaleza — CE</span>
+          <span
+            style="
+              font-size: 0.8rem;
+              opacity: 0.5;
+              margin-top: 8px;
+              display: block;
+            "
+            >Shopping RioMar — Sala 1220</span
+          >
+        </div>
+      </div>
+
+      <!-- Dev credit strip -->
+      <div class="footer-dev">
+        <div class="footer-dev-inner">
+          <div class="dev-info">
+            <span class="dev-label">Site desenvolvido por</span>
+            <strong class="dev-name">Igor Souza</strong>
+            <span class="dev-role">Técnico de TI · Desenvolvimento Web</span>
+          </div>
+          <div class="dev-links">
+            <a
+              href="https://wa.me/5585984742277?text=Olá%20Igor!%20Vi%20seu%20trabalho%20no%20site%20da%20Solar%20e%20Vendas%20e%20gostaria%20de%20um%20site%20também!"
+              target="_blank"
+              class="dev-link whatsapp"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+                />
+                <path
+                  d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.085 21.54a.5.5 0 00.613.636l4.54-1.32C8.762 21.533 10.35 22 12 22c5.522 0 10-4.478 10-10s-4.478-10-10-10z"
+                />
+              </svg>
+              Solicitar um site
+            </a>
+            <a
+              href="https://www.linkedin.com/in/igor-souza-2945103a6/"
+              target="_blank"
+              class="dev-link linkedin"
+            >
+              <svg
+                width="15"
+                height="15"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -635,60 +1370,74 @@
                   d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
                 />
               </svg>
+              LinkedIn
             </a>
-          </div>
-        </div>
-        <div>
-          <h3>Links Rápidos</h3>
-          <p><a href="#beneficio">Benefícios</a></p>
-          <p><a href="#galeria">Projetos</a></p>
-          <p><a href="#faq">FAQ</a></p>
-          <p><a href="#sobre">Sobre Nós</a></p>
-        </div>
-
-        <div>
-          <h3>Contato</h3>
-          <p>📞 (85) 9785-7791</p>
-          <p>📧 igorcastelocomercial@gmail.com</p>
-          <p>📍 Fortaleza - CE</p>
-        </div>
-
-        <div>
-          <h3>Newsletter</h3>
-          <p style="margin-bottom: 15px">
-            Receba novidades e dicas sobre energia solar
-          </p>
-          <div class="newsletter">
-            <input type="email" placeholder="Seu email" />
-            <button>Enviar</button>
+            <a
+              href="https://www.instagram.com/igor_castelo_comercial?igsh=MTJxeHlkOHpzaWUxOA=="
+              target="_blank"
+              class="dev-link instagram"
+            >
+              <svg
+                width="15"
+                height="15"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                />
+              </svg>
+              Instagram
+            </a>
           </div>
         </div>
       </div>
 
-      <p class="copy">© 2026 SOLAR E VENDAS. Todos os direitos reservados.</p>
+      <div class="footer-bottom">
+        <p>
+          © 2026 <strong>Solar e Vendas</strong>. Todos os direitos reservados.
+        </p>
+        <p>Desenvolvido com ☀ em Fortaleza, CE</p>
+      </div>
     </footer>
-    <!-- BOTÃO WHATSAPP FLUTUANTE -->
+
+    <!-- ═══════════════════════════════════════════
+       FLOATING ELEMENTS
+  ═══════════════════════════════════════════ -->
     <a
       href="https://wa.me/558597857791?text=Olá,%20gostaria%20de%20um%20orçamento!%20Vim%20pelo%20site!"
-      class="whatsapp-button"
+      class="whatsapp-float"
       target="_blank"
-      aria-label="Falar no WhatsApp"
+      aria-label="WhatsApp"
     >
-      <svg width="35" height="35" viewBox="0 0 40 40" fill="white">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
         <path
-          d="M20 0C8.954 0 0 8.954 0 20c0 3.531.923 6.845 2.537 9.721L.051 39.268l9.839-2.446A19.876 19.876 0 0020 40c11.046 0 20-8.954 20-20S31.046 0 20 0zm9.966 28.634c-.415 1.17-2.058 2.144-3.363 2.426-.896.188-2.067.339-6.003-1.289-5.021-2.077-8.27-7.175-8.52-7.505-.247-.33-2.024-2.693-2.024-5.14 0-2.446 1.28-3.648 1.734-4.148.454-.5 1.008-.625 1.346-.625.338 0 .676.004.972.018.312.014.732-.119 1.145.873.415 1.001 1.413 3.448 1.537 3.698.124.25.207.542.042.872-.165.33-.248.537-.496.827-.248.29-.52.648-.743.87-.248.247-.506.515-.217.996.29.5 1.285 2.118 2.758 3.43 1.894 1.688 3.488 2.213 3.983 2.463.495.25.784.207 1.073-.125.29-.332 1.243-1.45 1.575-1.95.332-.5.663-.415 1.12-.25.455.165 2.9 1.367 3.394 1.617.495.25.825.374.946.582.124.207.124 1.196-.29 2.366z"
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+        />
+        <path
+          d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.085 21.54a.5.5 0 00.613.636l4.54-1.32C8.762 21.533 10.35 22 12 22c5.522 0 10-4.478 10-10s-4.478-10-10-10z"
         />
       </svg>
+      <span class="wa-tooltip">Falar no WhatsApp</span>
     </a>
-    <!-- BOTÃO SCROLL TO TOP -->
-    <div class="scroll-top" id="scrollTop" onclick="scrollToTop()">
-      <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
-        <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
-      </svg>
-    </div>
-    <!-- EmailJS SDK -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
+    <button
+      class="scroll-top"
+      id="scrollTop"
+      onclick="scrollToTop()"
+      aria-label="Voltar ao topo"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+      >
+        <path d="M18 15l-6-6-6 6" />
+      </svg>
+    </button>
+
+    <!-- Script principal -->
     <script src="./script.js"></script>
   </body>
 </html>
