@@ -113,7 +113,7 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 }
 
 .section-title em {
-  font-style: italic;
+  font-style: normal;
   color: var(--gold);
 }
 
@@ -260,6 +260,7 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   font-family: var(--font-display);
   font-size: 1.2rem;
   font-weight: 700;
+  font-style: normal;
   letter-spacing: 0.04em;
   color: var(--gold);
 }
@@ -406,7 +407,7 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 }
 
 .hero-title .line:nth-child(1) { animation-delay: 0.4s; }
-.hero-title .line:nth-child(2) { animation-delay: 0.55s; color: var(--gold); font-style: italic; }
+.hero-title .line:nth-child(2) { animation-delay: 0.55s; color: var(--gold); font-style: normal; }
 
 .hero-sub {
   font-size: clamp(1rem, 2vw, 1.2rem);
@@ -984,7 +985,7 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   font-size: 0.95rem;
   color: var(--text-muted);
   line-height: 1.7;
-  font-style: italic;
+  font-style: normal;
 }
 
 .reviews-cta {
